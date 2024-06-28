@@ -1,0 +1,57 @@
+{
+  "data": {
+    "users": [
+      {
+        "id": 0,
+        "name": "Alex",
+        "secondName": "Smith",
+        "sex": "MALE",
+        "birthday": "1984-06-24"
+      }
+    ],
+    "credits": [
+      {
+        "id": 0,
+        "userId": 0,
+        "date": "2024-06-01",
+        "period" : "WEEK",
+        "money": 12600,
+        "rate": 15.75
+      },
+      {
+        "id": 1,
+        "userId": 0,
+        "date": "2024-06-01",
+        "period" : "DAY",
+        "money": 12600,
+        "rate": 15.75
+      }
+    ],
+    "discounts": [
+      {
+        "id": 0,
+        "type": "ONE",
+        "date": "2024-06-03",
+        "discount": 6.15
+      }
+    ],
+    "events": [
+      {
+        "id": 0,
+        "currency": "EUR",
+        "cost": 250.25,
+        "date": "2024-06-11"
+      }
+    ],
+    "transactions": [
+      {
+        "id": 0,
+        "date" : "2024-06-12",
+        "userId": 0,
+        "creditId": 0,
+        "currency": "EUR",
+        "money": 1200.25
+      }
+    ]
+  }
+}

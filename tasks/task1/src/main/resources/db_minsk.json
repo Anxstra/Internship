@@ -1,0 +1,57 @@
+{
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Jenny",
+        "secondName": "Walks",
+        "sex": "FEMALE",
+        "birthday": "1989-05-15"
+      }
+    ],
+    "credits": [
+      {
+        "id": 2,
+        "userId": 1,
+        "date": "2024-06-01",
+        "period" : "MONTH",
+        "money": 12600,
+        "rate": 15.75
+      },{
+        "id": 3,
+        "userId": 1,
+        "date": "2024-06-01",
+        "period" : "YEAR",
+        "money": 12600,
+        "rate": 15.75
+      }
+    ],
+    "discounts": [
+      {
+        "id": 1,
+        "type": "MANY",
+        "dateFrom": "2024-06-10",
+        "dateTo": "2024-06-16",
+        "discount": 15.25
+      }
+    ],
+    "events": [
+      {
+        "id": 1,
+        "currency": "USD",
+        "cost": 125.25,
+        "date": "2024-06-13"
+      }
+    ],
+    "transactions": [
+      {
+        "id": 1,
+        "date" : "2024-06-13",
+        "userId": 1,
+        "creditId": 2,
+        "currency": "USD",
+        "money": 1000.25
+      }
+    ]
+  }
+}

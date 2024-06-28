@@ -1,0 +1,17 @@
+{
+  "settings": {
+    "dateFrom": "2020-01-01",
+    "dateTo": "2024-06-13",
+    "showFor": {
+      "type": "ID",
+      "users": [0, 1]
+    },
+    "sortBy": "DEBT",
+    "useDepartments": [
+      "gomel",
+      "minsk"
+    ],
+    "startCostEUR": 3.75,
+    "startCostUSD": 3.25
+  }
+}
