@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16.3-alpine3.20
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+  migration:
+    image: flyway/flyway:10.15-alpine
+    volumes:
+      - ./src/main/resources/migration:/flyway/sql
+    environment:
+      FLYWAY_USER: ${DB_USER}
+      FLYWAY_PASSWORD: ${DB_PASSWORD}
+      FLYWAY_SCHEMAS: public
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/${DB_NAME}
+    command: migrate
+    depends_on:
+      - postgres
+
+networks:
+  default:
+    name: task4-bridge-network
+    external: true
+volumes:
+  postgres_data:
