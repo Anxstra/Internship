@@ -29,3 +29,8 @@ bin/
 .DS_Store
 /.idea
 algo.iml
+
+### Tasks dir files ###
+tasks/**/.idea
+tasks/**/.env
+tasks/**/target
