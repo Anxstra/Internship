@@ -1,0 +1,31 @@
+# server config
+server:
+  port: 8082
+  servlet:
+    context-path: /api
+
+spring:
+  # datasource config
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: anxstra
+    password: 12345678
+    url: jdbc:postgresql://localhost:5434/catalog
+  # liquibase config
+  liquibase:
+    enabled: false
+  # jooq config
+  jooq:
+    sql-dialect: Postgres
+
+# logging config
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: DEBUG
+    org.jooq.tools.LoggerListener: DEBUG
+
+# jwt secret
+com:
+  anxstra:
+    jwt:
+      secret: 16615cc78f4f0880ea1a8b9d76cc656cda9c07e395a66af02567e41b7558d41d1beba0cee427f30a528a183f28600fe00516832ece5ed3450d182956298c61d072061b42ab76528b20727733cf930f0a5945f170186ef3c1df2a60fa3ff1b5f3ac3f2794c673364578ac497358f013f6edb4536960db944909386b6eb11848147259219154bd1b60d88b3bebc3c461ac42a3ab3f419eada281a78dedb87b733ee8536a07283ff766d6d97fb03c88031db3669234b907985e48e5e283ff8a5e98c65909a47782f41486a2ae630dfe4e9c12d7c6959e4bef11072163a745e6f38825540186086c83d720858ecfb580a45cc6cf5efe32b187e5a53250489d4d3fe8df82df8648adb9b882d607d8b5df92acb3ad5a2cb26bb3153f63292f28194c9964f3e17790e8b3234136c1815dc99e3427fba47a4ad4ad44adb0788ecb0dc904932a83bfb8554fd22fa1a427cfd41b41d3ffd96eb3c08e978804f0ecc4b7d9d4f2c91e51ff144154e21a8cc647e48faa53fd1e72ebc2bdb231ee92cfb847e408532067e64db5e95c2ca92e370a8c23dcec7ab4d861dc1ea0f3a002ea31ad268f8d2cd4c6f862aa95552dd4dc5cca4d2f634d596406cb7d248270b4236477c9734ccd5d8edf8e9bd8c3f8c12d059ba7573518cdb8719559b1733b114d29df5bbfb42a101ec1c8bbe2451f616b74469ede2c0796e62ce7b505d4046bfe5760ef59

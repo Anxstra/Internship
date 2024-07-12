@@ -1,0 +1,5 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:security/db/changelog/db.changelog-master.yaml
+    drop-first: true
