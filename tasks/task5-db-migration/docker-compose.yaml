@@ -1,0 +1,22 @@
+name: "task5-db-migration"
+
+services:
+  security-migration:
+    build:
+      context: .
+      dockerfile: ./security-migration/Dockerfile
+    container_name: security-migration
+    volumes:
+      - maven_data:/root/.m2
+    env_file:
+      - security-migration/.env
+
+networks:
+  default:
+    name: task5-network
+    external: true
+
+volumes:
+  maven_data:
+    name: maven_data
+    external: true
