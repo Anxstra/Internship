@@ -9,7 +9,17 @@ services:
     volumes:
       - maven_data:/root/.m2
     env_file:
-      - security-migration/.env
+      - security-migration/.security.env
+
+  catalog-migration:
+    build:
+      context: .
+      dockerfile: ./catalog-migration/Dockerfile
+    container_name: catalog-migration
+    volumes:
+      - maven_data:/root/.m2
+    env_file:
+      - catalog-migration/.catalog.env
 
 networks:
   default:

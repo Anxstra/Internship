@@ -1,9 +1,9 @@
 FROM maven:3.9.8-eclipse-temurin-17
 LABEL maintainer="Anton Kozichev"
-WORKDIR /security-migration
+WORKDIR /catalog-migration
 COPY pom.xml .
-COPY security-migration ./security-migration/
-WORKDIR security-migration
+COPY catalog-migration ./catalog-migration/
+WORKDIR catalog-migration
 
 ENTRYPOINT mvn -v &&\
            mvn clean package -DskipTests &&\

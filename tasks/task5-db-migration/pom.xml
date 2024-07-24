@@ -11,6 +11,7 @@
   <url>https://maven.apache.org</url>
   <modules>
     <module>security-migration</module>
+    <module>catalog-migration</module>
   </modules>
 
   <properties>
