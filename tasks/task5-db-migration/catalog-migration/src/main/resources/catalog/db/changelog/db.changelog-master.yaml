@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - include:
+      file: ./scripts/create_tables.sql
+      relativeToChangelogFile: true
+  - include:
+      file: ./scripts/create_sequence.sql
+      relativeToChangelogFile: true
+  - include:
+      file: ./scripts/assign_sequence.sql
+      relativeToChangelogFile: true
+  - include:
+      file: ./scripts/define_relations.sql
+      relativeToChangelogFile: true
+  - include:
+      file: ./scripts/populate_data.sql
+      relativeToChangelogFile: true

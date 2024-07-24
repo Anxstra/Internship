@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS users (
+	id BIGINT PRIMARY KEY,
+	email VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(72) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    version BIGINT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS roles (
+	id BIGINT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+    version BIGINT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users_roles (
+	user_id BIGINT NOT NULL,
+	role_id BIGINT NOT NULL,
+	PRIMARY KEY(user_id, role_id)
+);
+
+CREATE TABLE IF NOT EXISTS tokens (
+    id BIGINT PRIMARY KEY,
+    access_token VARCHAR NOT NULL,
+    refresh_token VARCHAR NOT NULL,
+    user_id BIGINT NOT NULL,
+    is_revoked BOOLEAN NOT NULL,
+    version BIGINT NOT NULL
+)
