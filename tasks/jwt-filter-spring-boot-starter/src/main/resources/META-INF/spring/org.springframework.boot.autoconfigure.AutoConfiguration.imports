@@ -1,0 +1,2 @@
+com.anxstra.jwtfilterspringbootstarter.config.JwtFilterAutoConfiguration
+com.anxstra.jwtfilterspringbootstarter.config.SwaggerConfig

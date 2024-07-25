@@ -4,22 +4,18 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 
-@Component
-@RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     public static final String IP_CLAIM = "ip";
@@ -28,7 +24,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private static final String BEARER_PREFIX = "Bearer ";
 
-    private final AbstractJwtService abstractJwtService;
+    private final BaseJwtService baseJwtService;
+
+    public JwtAuthFilter(BaseJwtService baseJwtService) {
+        this.baseJwtService = baseJwtService;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -43,15 +43,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         String jwt = header.substring(BEARER_PREFIX.length());
-        String username = abstractJwtService.extractSubject(jwt);
-        String ip = abstractJwtService.extractIp(jwt, IP_CLAIM);
-        Set<GrantedAuthority> roles = abstractJwtService.extractRoles(jwt, ROLES_CLAIM);
+        String subject = baseJwtService.extractSubject(jwt);
+        String ip = baseJwtService.extractIp(jwt, IP_CLAIM);
+        Set<GrantedAuthority> roles = baseJwtService.extractRoles(jwt, ROLES_CLAIM);
 
-        if (Objects.nonNull(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
-            if (!abstractJwtService.isTokenExpired(jwt) && ip.equals(request.getRemoteAddr())) {
+        if (Objects.nonNull(subject) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
+            if (!baseJwtService.isTokenExpired(jwt) && ip.equals(request.getRemoteAddr())) {
 
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                        username, null, roles);
+                        subject, null, roles);
 
                 auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(auth);
