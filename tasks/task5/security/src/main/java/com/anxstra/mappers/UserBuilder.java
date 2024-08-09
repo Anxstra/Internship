@@ -30,6 +30,6 @@ public class UserBuilder {
                                  .map(role -> new RoleDto(role.getAuthority()))
                                  .collect(Collectors.toSet());
 
-        return new UserCacheDto(user.getId(), roles, user.getStatus());
+        return new UserCacheDto(user.getEmail(), roles, user.getStatus());
     }
 }

@@ -101,7 +101,7 @@ public class AuthService {
 
     private User retrieveUser(String jwt) {
 
-        String username = jwtService.extractSubject(jwt);
-        return userService.loadUserByUsername(username);
+        String subject = jwtService.extractSubject(jwt);
+        return userService.loadUserById(Long.parseLong(subject));
     }
 }

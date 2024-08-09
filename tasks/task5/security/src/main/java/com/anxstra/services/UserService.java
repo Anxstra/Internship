@@ -24,6 +24,12 @@ public class UserService implements UserDetailsService {
                              .orElseThrow(() -> new ApplicationException(badRequestOf(USER_NOT_FOUND_MSG)));
     }
 
+    public User loadUserById(Long id) {
+
+        return userRepository.findBriefById(id)
+                             .orElseThrow(() -> new ApplicationException(badRequestOf(USER_NOT_FOUND_MSG)));
+    }
+
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

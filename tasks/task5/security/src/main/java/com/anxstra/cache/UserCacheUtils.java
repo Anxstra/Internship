@@ -22,6 +22,6 @@ public class UserCacheUtils {
         Cache cache = cacheManager.getCache(USER_CACHE_NAME);
 
         Objects.requireNonNull(cache);
-        cache.put(user.getEmail(), UserBuilder.createUserCacheDto(user));
+        cache.put(user.getId(), UserBuilder.createUserCacheDto(user));
     }
 }

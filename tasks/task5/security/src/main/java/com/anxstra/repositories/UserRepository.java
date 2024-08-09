@@ -13,5 +13,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @EntityGraph("User.BRIEF")
     Optional<User> findBriefByEmail(String email);
 
+    @EntityGraph("User.BRIEF")
+    Optional<User> findBriefById(Long id);
+
     boolean existsByEmail(String email);
 }

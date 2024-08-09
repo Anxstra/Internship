@@ -270,11 +270,11 @@ class AuthControllerTest extends ContainerSetup {
                .andDo(print())
                .andReturn();
 
-        String cachedUser = redisTemplate.opsForValue().get("kozichev2020@gmail.com");
+        String cachedUser = redisTemplate.opsForValue().get("101");
         assertNotNull(cachedUser);
 
         UserCacheDto userCacheDto = mapper.readValue(cachedUser, UserCacheDto.class);
-        assertEquals(101, userCacheDto.id());
+        assertEquals("kozichev2020@gmail.com", userCacheDto.email());
         assertEquals(Set.of(new RoleDto("ADMIN")), userCacheDto.roles());
         assertEquals(StatusType.ACTIVE, userCacheDto.status());
     }
