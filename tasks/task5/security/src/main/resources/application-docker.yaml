@@ -1,0 +1,15 @@
+spring:
+  # datasource config
+  datasource:
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    url: ${POSTGRES_URL}
+  # redis
+  data:
+    redis:
+      host: ${REDIS_HOST}
+
+com:
+  anxstra:
+    jwt:
+      secret: ${JWT_SECRET}

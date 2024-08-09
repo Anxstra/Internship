@@ -1,0 +1,92 @@
+name: task5
+
+services:
+  security-db:
+    image: postgres:16.3-alpine3.20
+    container_name: security-db
+    env_file:
+      - security/.security.env
+    restart: always
+    ports:
+      - "5433:5433"
+    command: -p 5433
+    volumes:
+      - security_data:/var/lib/postgresql/data
+
+  security-app:
+    build:
+      context: ./security
+      args:
+        JAR_FILE: target/security-0.0.1-SNAPSHOT.jar
+    container_name: security-app
+    ports:
+      - "8080:8080"
+    env_file:
+      - security/.security.env
+    depends_on:
+      - security-db
+      - redis-cache
+
+  catalog-db:
+    image: postgres:16.3-alpine3.20
+    container_name: catalog-db
+    env_file:
+      - catalog/.catalog.env
+    restart: always
+    ports:
+      - "5434:5434"
+    command: -p 5434
+    volumes:
+      - catalog_data:/var/lib/postgresql/data
+
+  catalog-app:
+    build:
+      context: ./catalog
+      args:
+        JAR_FILE: target/catalog-0.0.1-SNAPSHOT.jar
+    container_name: catalog-app
+    ports:
+      - "8082:8082"
+    env_file:
+      - catalog/.catalog.env
+    depends_on:
+      - catalog-db
+
+  order-db:
+    image: postgres:16.3-alpine3.20
+    container_name: order-db
+    env_file:
+      - order/.order.env
+    restart: always
+    ports:
+      - "5435:5435"
+    command: -p 5435
+    volumes:
+      - order_data:/var/lib/postgresql/data
+
+  redis-cache:
+    image: redis:7.4-rc-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis-cache:6379
+    ports:
+      - "18081:8081"
+
+networks:
+  default:
+    name: task5-network
+    external: true
+
+volumes:
+  order_data:
+  catalog_data:
+  security_data:
+  redis_data:
